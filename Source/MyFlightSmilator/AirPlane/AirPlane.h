@@ -25,11 +25,20 @@ protected:
 	float MaxPlaneSpeed;
 	UPROPERTY(EditDefaultsOnly, Category = "PlaneSetup")
 	float MinPlaneSpeed;
+	
 	UPROPERTY(EditDefaultsOnly, Category = "PlaneSetup")
-	int32 EngineLevelMax = 3;
+	int EngineLevelMax = 3;
 	UPROPERTY(EditDefaultsOnly, Category = "PlaneSetup")
-	int32 EngineLevelMin = 1;
+	int EngineLevelMin = 1;
 
+	UFUNCTION(BlueprintCallable, Category = "Engine")
+	void SetEngineLevelMax();
+	UFUNCTION(BlueprintCallable, Category = "Engine")
+	void SetEngineLevelMin();
+	UFUNCTION(BlueprintCallable, Category = "Engine")
+	void IncreaseEngineLevel();
+	UFUNCTION(BlueprintCallable, Category = "Engine")
+	void DecreaseEngineLevel();
 
 
 public:
@@ -38,22 +47,6 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
-	UFUNCTION(BlueprintCallable, Category = "Plane Control")
-	void SetEngineLevelToMax();
-
-	UFUNCTION(BlueprintCallable, Category = "Plane Control")
-	void IncreaseEngineLevel();
-
-	UFUNCTION(BlueprintCallable, Category = "Plane Control")
-	void DecreaseEngineLevel();
-
-	UFUNCTION(BlueprintCallable, Category = "Plane Control")
-	void SetEngineLevelToMin();
-
-	UFUNCTION(BlueprintCallable, Category = "Setup")
-	void SetAirPlaneEngine(UAirPlaneEngine* AirPlaneEngineToSet);
-
 
 private:
 	UAirPlaneEngine* AirPlaneEngine = nullptr;

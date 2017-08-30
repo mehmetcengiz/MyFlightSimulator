@@ -19,15 +19,13 @@ protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
-	UPROPERTY(BlueprintReadWrite, Category = "Engine")
-	int32 EngineLevel = 0;
-
+	int EngineLevel = 0;
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 	
-	void ChangeEngineLevel(int32 EngineLevelToChange);
+	void ChangeEngineLevel(int EngineLevelToChange);
 
-	void SetEngineLevel(int32 EngineLevelToSet);
+	void SetEngineLevel(int EngineLevelToSet);
 	
 };

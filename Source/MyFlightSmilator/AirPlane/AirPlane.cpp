@@ -15,6 +15,7 @@ AAirPlane::AAirPlane(){
 // Called when the game starts or when spawned
 void AAirPlane::BeginPlay(){
 	Super::BeginPlay();
+	AirPlaneEngine = FindComponentByClass<UAirPlaneEngine>();
 }
 
 // Called every frame
@@ -29,24 +30,22 @@ void AAirPlane::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 }
 
-void AAirPlane::SetEngineLevelToMax(){
-	if (AirPlaneEngine == NULL) { return;}
+void AAirPlane::SetEngineLevelMax() {
+	if (AirPlaneEngine == NULL) { return; }
 	AirPlaneEngine->SetEngineLevel(EngineLevelMax);
 }
 
+void AAirPlane::SetEngineLevelMin(){
+	if (AirPlaneEngine == NULL) { return; }
+	AirPlaneEngine->SetEngineLevel(EngineLevelMin);
+}
+
 void AAirPlane::IncreaseEngineLevel(){
+	if (AirPlaneEngine == NULL) { return; }
 	AirPlaneEngine->ChangeEngineLevel(1);
 }
 
 void AAirPlane::DecreaseEngineLevel(){
+	if (AirPlaneEngine == NULL) { return; }
 	AirPlaneEngine->ChangeEngineLevel(-1);
 }
-
-void AAirPlane::SetEngineLevelToMin(){
-	AirPlaneEngine->SetEngineLevel(EngineLevelMin);
-}
-
-void AAirPlane::SetAirPlaneEngine(UAirPlaneEngine* AirPlaneEngineToSet){
-	AirPlaneEngine = AirPlaneEngineToSet;
-}
-

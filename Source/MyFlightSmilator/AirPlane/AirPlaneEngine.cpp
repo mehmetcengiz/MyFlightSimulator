@@ -28,11 +28,13 @@ void UAirPlaneEngine::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 
 }
 
-void UAirPlaneEngine::ChangeEngineLevel(int32 EngineLevelToChange){
+void UAirPlaneEngine::ChangeEngineLevel(int EngineLevelToChange){
+	UE_LOG(LogTemp, Warning, TEXT("Engine level incremented."));
 	EngineLevel += EngineLevelToChange;
 }
 
-void UAirPlaneEngine::SetEngineLevel(int32 EngineLevelToSet){
+void UAirPlaneEngine::SetEngineLevel(int EngineLevelToSet){
+	UE_LOG(LogTemp, Warning, TEXT("Engine level Set."));
 	EngineLevel = EngineLevelToSet;
 }
 
