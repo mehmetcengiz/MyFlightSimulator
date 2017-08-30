@@ -18,6 +18,12 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	UPROPERTY(EditDefaultsOnly, Category = "PlaneSetup")
+	float MaxPlaneSpeed;
+	UPROPERTY(EditDefaultsOnly, Category = "PlaneSetup")
+	float MinPlaneSpeed;
+	
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
