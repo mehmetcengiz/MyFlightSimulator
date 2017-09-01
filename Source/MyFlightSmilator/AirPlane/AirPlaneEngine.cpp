@@ -23,19 +23,20 @@ void UAirPlaneEngine::BeginPlay(){
 void UAirPlaneEngine::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction){
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	if (EngineLevel == 0) {
-		UE_LOG(LogTemp, Warning, TEXT("EngineLevel: 0"));
-	}
-	else if (EngineLevel == 1) {
-		UE_LOG(LogTemp, Warning, TEXT("EngineLevel: 1"));
-	}
-	else if (EngineLevel == 2) {
-		UE_LOG(LogTemp, Warning, TEXT("EngineLevel: 2"));
-	}
-	else if (EngineLevel == 3) {
-		UE_LOG(LogTemp, Warning, TEXT("EngineLevel: 3"));
-	}
+	//if (EngineLevel == 0) {
+	//	UE_LOG(LogTemp, Warning, TEXT("EngineLevel: 0"));
+	//}
+	//else if (EngineLevel == 1) {
+	//	UE_LOG(LogTemp, Warning, TEXT("EngineLevel: 1"));
+	//}
+	//else if (EngineLevel == 2) {
+	//	UE_LOG(LogTemp, Warning, TEXT("EngineLevel: 2"));
+	//}
+	//else if (EngineLevel == 3) {
+	//	UE_LOG(LogTemp, Warning, TEXT("EngineLevel: 3"));
+	//}
 
+	
 	PushPlane();
 
 }
@@ -52,12 +53,22 @@ void UAirPlaneEngine::SetEngineLevel(int EngineLevelToSet){
 
 void UAirPlaneEngine::PushPlane() {
 
-	//if(GetOwner()->GetVelocity().X >= (3000 * EngineLevel)) {
-	//	return;
-	//}
+	MaxSpeed = EngineLevel * EnginePower;
+	if(Speed < MaxSpeed) {
+		Speed += EngineLevel * EnginePower / 1000;
+	} else{
+		Speed -= EngineLevel * EnginePower / 1000;
+	}
 
 	//auto forceApplied = GetOwner()->GetActorForwardVector() * EngineLevel * trackMaxDrivingForce;
 	//auto forceLocation = GetComponentLocation();
 	//auto tankRoot = Cast<UPrimitiveComponent>(GetOwner()->GetRootComponent());
 	//tankRoot->AddForceAtLocation(forceApplied, forceLocation);
+
+	UE_LOG(LogTemp, Warning, TEXT("speed %f"),Speed);
+	FVector DeltaLocation(Speed, 0, 0);
+	GetOwner()->AddActorLocalOffset(DeltaLocation, true, nullptr, ETeleportType::None);
+	
+
+
 }

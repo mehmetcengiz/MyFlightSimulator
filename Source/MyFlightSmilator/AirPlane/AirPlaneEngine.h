@@ -24,7 +24,14 @@ protected:
 	int EngineLevel = 0;
 
 	UPROPERTY(EditDefaultsOnly,Category="Engine")
-	float trackMaxDrivingForce = 100000;
+	float TrackMaxDrivingForce = 100000;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Engine")
+	float EnginePower = 30;
+
+	float Speed =0;
+	float MaxSpeed = 0;
+
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
