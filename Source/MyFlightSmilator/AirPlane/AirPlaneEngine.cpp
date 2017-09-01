@@ -3,7 +3,6 @@
 #include "MyFlightSmilator.h"
 #include "AirPlaneEngine.h"
 
-
 // Sets default values for this component's properties
 UAirPlaneEngine::UAirPlaneEngine(){
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
@@ -24,7 +23,20 @@ void UAirPlaneEngine::BeginPlay(){
 void UAirPlaneEngine::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction){
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	UE_LOG(LogTemp, Warning, TEXT("EngineLevel: %f"), EngineLevel);
+	if (EngineLevel == 0) {
+		UE_LOG(LogTemp, Warning, TEXT("EngineLevel: 0"));
+	}
+	else if (EngineLevel == 1) {
+		UE_LOG(LogTemp, Warning, TEXT("EngineLevel: 1"));
+	}
+	else if (EngineLevel == 2) {
+		UE_LOG(LogTemp, Warning, TEXT("EngineLevel: 2"));
+	}
+	else if (EngineLevel == 3) {
+		UE_LOG(LogTemp, Warning, TEXT("EngineLevel: 3"));
+	}
+
+	PushPlane();
 
 }
 
@@ -38,5 +50,14 @@ void UAirPlaneEngine::SetEngineLevel(int EngineLevelToSet){
 	EngineLevel = EngineLevelToSet;
 }
 
+void UAirPlaneEngine::PushPlane() {
 
+	//if(GetOwner()->GetVelocity().X >= (3000 * EngineLevel)) {
+	//	return;
+	//}
 
+	//auto forceApplied = GetOwner()->GetActorForwardVector() * EngineLevel * trackMaxDrivingForce;
+	//auto forceLocation = GetComponentLocation();
+	//auto tankRoot = Cast<UPrimitiveComponent>(GetOwner()->GetRootComponent());
+	//tankRoot->AddForceAtLocation(forceApplied, forceLocation);
+}

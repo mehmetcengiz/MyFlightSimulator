@@ -3,35 +3,26 @@
 #pragma once
 
 #include "Components/SceneComponent.h"
-#include "AirPlaneEngine.generated.h"
+#include "AirFriction.generated.h"
 
-
-class UFloatingPawnMovement;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class MYFLIGHTSMILATOR_API UAirPlaneEngine : public USceneComponent
+class MYFLIGHTSMILATOR_API UAirFriction : public USceneComponent
 {
 	GENERATED_BODY()
 
 public:	
 	// Sets default values for this component's properties
-	UAirPlaneEngine();
+	UAirFriction();
 
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
-	int EngineLevel = 0;
-
-	UPROPERTY(EditDefaultsOnly,Category="Engine")
-	float trackMaxDrivingForce = 100000;
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+
+	void ApplyFriction();
 	
-	void ChangeEngineLevel(int EngineLevelToChange);
-
-	void SetEngineLevel(int EngineLevelToSet);
-
-	void PushPlane();
 };
