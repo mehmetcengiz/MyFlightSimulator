@@ -21,6 +21,9 @@ void AAirPlane::BeginPlay(){
 // Called every frame
 void AAirPlane::Tick(float DeltaTime){
 	Super::Tick(DeltaTime);
+
+
+
 }
 
 // Called to bind functionality to input
@@ -28,7 +31,6 @@ void AAirPlane::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
 }
-
 
 void AAirPlane::SetEngineLevelMax() {
 	if (AirPlaneEngine == NULL) { return; }

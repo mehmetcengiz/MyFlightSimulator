@@ -16,6 +16,7 @@ UAirPlaneEngine::UAirPlaneEngine(){
 // Called when the game starts
 void UAirPlaneEngine::BeginPlay(){
 	Super::BeginPlay();
+	
 }
 
 
@@ -54,16 +55,12 @@ void UAirPlaneEngine::SetEngineLevel(int EngineLevelToSet){
 void UAirPlaneEngine::PushPlane() {
 
 	MaxSpeed = EngineLevel * EnginePower;
+
 	if(Speed < MaxSpeed) {
 		Speed += EngineLevel * EnginePower / 1000;
 	} else{
 		Speed -= EngineLevel * EnginePower / 1000;
 	}
-
-	//auto forceApplied = GetOwner()->GetActorForwardVector() * EngineLevel * trackMaxDrivingForce;
-	//auto forceLocation = GetComponentLocation();
-	//auto tankRoot = Cast<UPrimitiveComponent>(GetOwner()->GetRootComponent());
-	//tankRoot->AddForceAtLocation(forceApplied, forceLocation);
 
 	UE_LOG(LogTemp, Warning, TEXT("speed %f"),Speed);
 	FVector DeltaLocation(Speed, 0, 0);
@@ -71,4 +68,8 @@ void UAirPlaneEngine::PushPlane() {
 	
 
 
+}
+
+float UAirPlaneEngine::GetPlaneSpeed(){
+	return Speed;
 }

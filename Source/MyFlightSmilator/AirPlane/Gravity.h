@@ -5,6 +5,7 @@
 #include "Components/ActorComponent.h"
 #include "Gravity.generated.h"
 
+class UAirPlaneEngine;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class MYFLIGHTSMILATOR_API UGravity : public UActorComponent
@@ -24,5 +25,8 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	void ApplyGravity();
+
+private:
+	UAirPlaneEngine* AirPlaneEngine = nullptr;
 	
 };

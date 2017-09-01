@@ -5,6 +5,7 @@
 #include "Components/SceneComponent.h"
 #include "AirPlaneEngine.generated.h"
 
+class AAirPlane;
 
 class UFloatingPawnMovement;
 
@@ -27,10 +28,8 @@ protected:
 	float TrackMaxDrivingForce = 100000;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Engine")
-	float EnginePower = 30;
+	float EnginePower = 60;
 
-	float Speed =0;
-	float MaxSpeed = 0;
 
 public:	
 	// Called every frame
@@ -41,4 +40,13 @@ public:
 	void SetEngineLevel(int EngineLevelToSet);
 
 	void PushPlane();
+
+	float GetPlaneSpeed();
+private:
+
+	float Speed = 0;
+	float MaxSpeed = 0;
+
+
+
 };

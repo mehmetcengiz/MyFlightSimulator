@@ -2,7 +2,7 @@
 
 #include "MyFlightSmilator.h"
 #include "Gravity.h"
-
+#include "AirPlaneEngine.h"
 
 // Sets default values for this component's properties
 UGravity::UGravity()
@@ -18,9 +18,7 @@ UGravity::UGravity()
 // Called when the game starts
 void UGravity::BeginPlay(){
 	Super::BeginPlay();
-
-
-	
+	AirPlaneEngine = GetOwner()->FindComponentByClass<UAirPlaneEngine>();
 }
 
 
@@ -33,9 +31,15 @@ void UGravity::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 
 void UGravity::ApplyGravity(){
 
+	if (AirPlaneEngine == NULL) { return; }
+	auto Speed = AirPlaneEngine->GetPlaneSpeed();
 
+	float GravityZ = Speed < 120 ? 120 - Speed : 0;
+	GravityZ = GravityZ > 15 ? 15 : GravityZ;
 
-	FVector Gravity(0, 0, -10);
+	UE_LOG(LogTemp, Warning, TEXT("Gravity: %f"), GravityZ);
+
+	FVector Gravity(0, 0, -GravityZ);
 	GetOwner()->AddActorWorldOffset(Gravity, true, nullptr, ETeleportType::None);
 }
 
