@@ -48,6 +48,6 @@ void UAirPlaneRudder::UseRudder(float Scale){
 
 	float RudderRotation = Scale * PlaneRudderTurningSpeed;
 	FRotator RudderTurningSpeed(0, 0, RudderRotation);
-	GetOwner()->AddActorLocalRotation(RudderTurningSpeed, true, nullptr, ETeleportType::None);
+	GetOwner()->AddActorWorldRotation(RudderTurningSpeed, true, nullptr, ETeleportType::None);
 }
 
