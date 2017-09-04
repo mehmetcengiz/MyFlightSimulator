@@ -20,11 +20,12 @@ void AAirPlane::BeginPlay(){
 	AirPlaneRudder = FindComponentByClass<UAirPlaneRudder>();
 }
 
+
 // Called every frame
 void AAirPlane::Tick(float DeltaTime){
 	Super::Tick(DeltaTime);
 
-
+	SetIsMovingBySpeed();
 
 }
 
@@ -32,6 +33,13 @@ void AAirPlane::Tick(float DeltaTime){
 void AAirPlane::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent){
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+}
+
+void AAirPlane::UseRudder(bool bIsUsingRudder,float Scale){
+	if(AirPlaneRudder && bIsMoving){
+		AirPlaneRudder->SetIsUsingRudder(bIsUsingRudder);
+		AirPlaneRudder->SetRudderScale(Scale);
+	}
 }
 
 void AAirPlane::SetEngineLevelMax() {
@@ -54,9 +62,12 @@ void AAirPlane::DecreaseEngineLevel(){
 	AirPlaneEngine->ChangeEngineLevel(-1);
 }
 
-void AAirPlane::UseRudder(bool bIsUsingRudder,float Scale){
-	if(AirPlaneRudder){
-		AirPlaneRudder->SetIsUsingRudder(bIsUsingRudder);
-		AirPlaneRudder->SetRudderScale(Scale);
+
+void AAirPlane::SetIsMovingBySpeed() {
+	if (AirPlaneEngine != NULL && AirPlaneEngine->GetPlaneSpeed() > 0) {
+		bIsMoving = true;
+	}
+	else {
+		bIsMoving = false;
 	}
 }

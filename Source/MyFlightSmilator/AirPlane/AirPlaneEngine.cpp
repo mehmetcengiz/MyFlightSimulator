@@ -39,7 +39,6 @@ void UAirPlaneEngine::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 
 	
 	PushPlane();
-
 }
 
 void UAirPlaneEngine::ChangeEngineLevel(int EngineLevelToChange){

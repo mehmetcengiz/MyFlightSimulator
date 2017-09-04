@@ -20,6 +20,7 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	void SetIsMovingBySpeed();
 
 	UPROPERTY(EditDefaultsOnly, Category = "PlaneSetup")
 	float MaxPlaneSpeed;
@@ -56,4 +57,8 @@ public:
 private:
 	UAirPlaneEngine* AirPlaneEngine = nullptr;
 	UAirPlaneRudder* AirPlaneRudder = nullptr;
+
+	bool bIsMoving = false;
+	bool bIsOnAir = false;
+
 };
