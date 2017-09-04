@@ -20,8 +20,8 @@ void UAirPlaneWing::BeginPlay()
 {
 	Super::BeginPlay();
 
-	if(bIsUsingWings){
-		UseWings(WingsScale);
+	if(bIsUsingWingsToRotate){
+		UseWingsToRotate(WingsScaleForRotate);
 	}
 	
 }
@@ -32,12 +32,12 @@ void UAirPlaneWing::TickComponent(float DeltaTime, ELevelTick TickType, FActorCo
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	if (bIsUsingWings) {
-		UseWings(WingsScale);
+	if (bIsUsingWingsToRotate) {
+		UseWingsToRotate(WingsScaleForRotate);
 	}
 }
 
-void UAirPlaneWing::UseWings(float Scale){
+void UAirPlaneWing::UseWingsToRotate(float Scale){
 
 	float WingsRotation = Scale * PlaneWingTurningSpeed;
 	FRotator NewRotation = GetOwner()->GetActorRotation();
@@ -45,11 +45,11 @@ void UAirPlaneWing::UseWings(float Scale){
 	GetOwner()->SetActorRotation(NewRotation, ETeleportType::None);
 }
 
-void UAirPlaneWing::SetWingsScale(float ScaleToSet) {
+void UAirPlaneWing::SetWingsScaleForRotating(float ScaleToSet) {
 
-	WingsScale = ScaleToSet;
+	WingsScaleForRotate = ScaleToSet;
 }
 
-void UAirPlaneWing::SetIsUsingWings(bool boolToSet) {
-	bIsUsingWings = boolToSet;
+void UAirPlaneWing::SetIsUsingWingsForRotating(bool boolToSet) {
+	bIsUsingWingsToRotate = boolToSet;
 }

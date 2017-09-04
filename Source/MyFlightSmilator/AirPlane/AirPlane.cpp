@@ -46,8 +46,8 @@ void AAirPlane::UseRudder(bool bIsUsingRudder,float Scale){
 
 void AAirPlane::UseWingsToRotate(bool bIsUsingWings, float Scale){
 	if(AirPlaneWing && bIsMoving){
-		AirPlaneWing->SetIsUsingWings(bIsUsingWings);
-		AirPlaneWing->SetWingsScale(Scale);
+		AirPlaneWing->SetIsUsingWingsForRotating(bIsUsingWings);
+		AirPlaneWing->SetWingsScaleForRotating(Scale);
 	}
 }
 

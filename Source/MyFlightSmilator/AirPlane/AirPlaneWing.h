@@ -26,16 +26,17 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-	void SetWingsScale(float ScaleToSet);
 
-	void SetIsUsingWings(bool boolToSet);
+
+	void SetWingsScaleForRotating(float ScaleToSet);
+	void SetIsUsingWingsForRotating(bool boolToSet);
 
 
 private:
 
-	bool bIsUsingWings = false;
-	float WingsScale = 0;
+	bool bIsUsingWingsToRotate = false;
+	float WingsScaleForRotate = 0;
 
-	void UseWings(float Scale);
+	void UseWingsToRotate(float Scale);
 	
 };
