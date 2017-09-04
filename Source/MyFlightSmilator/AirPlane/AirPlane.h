@@ -8,6 +8,7 @@
 
 class UAirPlaneEngine;
 class UAirPlaneRudder;
+class UAirPlaneWing;
 
 UCLASS()
 
@@ -45,6 +46,8 @@ protected:
 
 	UFUNCTION(BlueprintCallable, Category = "Controls")
 	void UseRudder(bool bIsUsingRudder,float Scale);
+	UFUNCTION(BlueprintCallable, Category = "Controls")
+	void UseWingsToRotate(bool bIsUsingWings,float Scale);
 
 
 public:
@@ -57,6 +60,7 @@ public:
 private:
 	UAirPlaneEngine* AirPlaneEngine = nullptr;
 	UAirPlaneRudder* AirPlaneRudder = nullptr;
+	UAirPlaneWing* AirPlaneWing = nullptr;
 
 	bool bIsMoving = false;
 	bool bIsOnAir = false;

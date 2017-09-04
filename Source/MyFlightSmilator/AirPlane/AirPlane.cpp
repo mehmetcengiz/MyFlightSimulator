@@ -3,6 +3,7 @@
 #include "MyFlightSmilator.h"
 #include "AirPlane.h"
 #include "AirPlaneEngine.h"
+#include "AirPlaneWing.h"
 #include "AirPlaneRudder.h"
 
 
@@ -18,6 +19,7 @@ void AAirPlane::BeginPlay(){
 	Super::BeginPlay();
 	AirPlaneEngine = FindComponentByClass<UAirPlaneEngine>();
 	AirPlaneRudder = FindComponentByClass<UAirPlaneRudder>();
+	AirPlaneWing = FindComponentByClass<UAirPlaneWing>();
 }
 
 
@@ -39,6 +41,13 @@ void AAirPlane::UseRudder(bool bIsUsingRudder,float Scale){
 	if(AirPlaneRudder && bIsMoving){
 		AirPlaneRudder->SetIsUsingRudder(bIsUsingRudder);
 		AirPlaneRudder->SetRudderScale(Scale);
+	}
+}
+
+void AAirPlane::UseWingsToRotate(bool bIsUsingWings, float Scale){
+	if(AirPlaneWing && bIsMoving){
+		AirPlaneWing->SetIsUsingWings(bIsUsingWings);
+		AirPlaneWing->SetWingsScale(Scale);
 	}
 }
 
