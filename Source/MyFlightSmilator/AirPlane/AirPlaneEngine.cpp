@@ -65,9 +65,6 @@ void UAirPlaneEngine::PushPlane() {
 	UE_LOG(LogTemp, Warning, TEXT("speed %f"),Speed);
 	FVector DeltaLocation(Speed, 0, 0);
 	GetOwner()->AddActorLocalOffset(DeltaLocation, true, nullptr, ETeleportType::None);
-	
-
-
 }
 
 float UAirPlaneEngine::GetPlaneSpeed(){

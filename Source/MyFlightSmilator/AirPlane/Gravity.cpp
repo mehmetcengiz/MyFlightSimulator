@@ -34,8 +34,8 @@ void UGravity::ApplyGravity(){
 	if (AirPlaneEngine == NULL) { return; }
 	auto Speed = AirPlaneEngine->GetPlaneSpeed();
 
-	float GravityZ = Speed < 120 ? 120 - Speed : 0;
-	GravityZ = GravityZ > 15 ? 15 : GravityZ;
+	float GravityZ = Speed < MinSpeedToFly ? MinSpeedToFly - Speed : 0;
+	GravityZ = GravityZ > MaxGravity ? MaxGravity : GravityZ;
 
 	UE_LOG(LogTemp, Warning, TEXT("Gravity: %f"), GravityZ);
 

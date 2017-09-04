@@ -6,8 +6,8 @@
 #include "AirPlane.generated.h"
 
 
-class UPlaneEngine;
 class UAirPlaneEngine;
+class UAirPlaneRudder;
 
 UCLASS()
 
@@ -30,6 +30,8 @@ protected:
 	int EngineLevelMax = 3;
 	UPROPERTY(EditDefaultsOnly, Category = "PlaneSetup")
 	int EngineLevelMin = 1;
+	UPROPERTY(EditDefaultsOnly, Category = "PlaneSetup")
+	float RudderMaxTurning = 0.2;
 
 	UFUNCTION(BlueprintCallable, Category = "Engine")
 	void SetEngineLevelMax();
@@ -39,6 +41,9 @@ protected:
 	void IncreaseEngineLevel();
 	UFUNCTION(BlueprintCallable, Category = "Engine")
 	void DecreaseEngineLevel();
+
+	UFUNCTION(BlueprintCallable, Category = "Controls")
+	void UseRudder(bool bIsUsingRudder,float Scale);
 
 
 public:
@@ -50,5 +55,5 @@ public:
 
 private:
 	UAirPlaneEngine* AirPlaneEngine = nullptr;
-
+	UAirPlaneRudder* AirPlaneRudder = nullptr;
 };

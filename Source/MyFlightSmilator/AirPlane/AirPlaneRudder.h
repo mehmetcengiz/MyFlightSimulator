@@ -3,35 +3,37 @@
 #pragma once
 
 #include "Components/ActorComponent.h"
-#include "Gravity.generated.h"
+#include "AirPlaneRudder.generated.h"
 
-class UAirPlaneEngine;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class MYFLIGHTSMILATOR_API UGravity : public UActorComponent
+class MYFLIGHTSMILATOR_API UAirPlaneRudder : public UActorComponent
 {
 	GENERATED_BODY()
 
 public:	
 	// Sets default values for this component's properties
-	UGravity();
+	UAirPlaneRudder();
 
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
-	UPROPERTY(EditDefaultsOnly, Category = "AirPlane")
-	float MinSpeedToFly = 120.0f;
-	UPROPERTY(EditDefaultsOnly, Category = "AirPlane")
-	float MaxGravity = 15.f;
+	UPROPERTY(EditDefaultsOnly, Category = "Plane Setup")
+	float PlaneRudderTurningSpeed = 0.1f;
 
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-	void ApplyGravity();
-
-private:
-	UAirPlaneEngine* AirPlaneEngine = nullptr;
+	void SetRudderScale(float Scale);
 	
+	void SetIsUsingRudder(bool boolToSet);
+	
+private:
+	bool bIsUsingRudder = false;
+	float RudderScale = 0;
+
+	void UseRudder(float Scale);
+
 };

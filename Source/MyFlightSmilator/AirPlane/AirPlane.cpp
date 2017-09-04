@@ -3,6 +3,7 @@
 #include "MyFlightSmilator.h"
 #include "AirPlane.h"
 #include "AirPlaneEngine.h"
+#include "AirPlaneRudder.h"
 
 
 // Sets default values
@@ -16,6 +17,7 @@ AAirPlane::AAirPlane(){
 void AAirPlane::BeginPlay(){
 	Super::BeginPlay();
 	AirPlaneEngine = FindComponentByClass<UAirPlaneEngine>();
+	AirPlaneRudder = FindComponentByClass<UAirPlaneRudder>();
 }
 
 // Called every frame
@@ -50,4 +52,11 @@ void AAirPlane::IncreaseEngineLevel(){
 void AAirPlane::DecreaseEngineLevel(){
 	if (AirPlaneEngine == NULL) { return; }
 	AirPlaneEngine->ChangeEngineLevel(-1);
+}
+
+void AAirPlane::UseRudder(bool bIsUsingRudder,float Scale){
+	if(AirPlaneRudder){
+		AirPlaneRudder->SetIsUsingRudder(bIsUsingRudder);
+		AirPlaneRudder->SetRudderScale(Scale);
+	}
 }
