@@ -40,9 +40,9 @@ void UAirPlaneWing::TickComponent(float DeltaTime, ELevelTick TickType, FActorCo
 void UAirPlaneWing::UseWings(float Scale){
 
 	float WingsRotation = Scale * PlaneWingTurningSpeed;
-	FRotator RudderTurningSpeed(0, 0, WingsRotation);
-
-	GetOwner()->AddActorLocalRotation(RudderTurningSpeed, true, nullptr, ETeleportType::None);
+	FRotator NewRotation = GetOwner()->GetActorRotation();
+	NewRotation.Roll += WingsRotation;
+	GetOwner()->SetActorRotation(NewRotation, ETeleportType::None);
 }
 
 void UAirPlaneWing::SetWingsScale(float ScaleToSet) {
