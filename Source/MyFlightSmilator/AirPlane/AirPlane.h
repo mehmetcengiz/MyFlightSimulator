@@ -34,6 +34,8 @@ protected:
 	int EngineLevelMin = 0;
 	UPROPERTY(EditDefaultsOnly, Category = "PlaneSetup")
 	float RudderMaxTurning = 0.2;
+	UPROPERTY(EditDefaultsOnly, Category = "PlaneSetup")
+	float WingsMaxUpDownMovement = 0.2;
 
 	UFUNCTION(BlueprintCallable, Category = "Engine")
 	void SetEngineLevelMax();
@@ -50,6 +52,10 @@ protected:
 	void UseWingsToRotate(bool bIsUsingWings,float Scale);
 	UFUNCTION(BlueprintCallable, Category = "Controls")
 	void SetIsBreaking(bool BreakingToSet);
+	UFUNCTION(BlueprintCallable, Category = "Controls")
+	void UseWingsForUpMovement(bool IsWingsUpToSet);
+	UFUNCTION(BlueprintCallable, Category = "Controls")
+	void UseWingsForDownMovement(bool IsWingsDownToSet);
 
 public:
 	// Called every frame

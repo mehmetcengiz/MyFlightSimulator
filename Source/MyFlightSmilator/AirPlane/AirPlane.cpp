@@ -57,6 +57,20 @@ void AAirPlane::SetIsBreaking(bool BreakingToSet) {
 	}
 }
 
+void AAirPlane::UseWingsForUpMovement(bool IsWingsUpToSet) {
+	if (AirPlaneWing) {
+		AirPlaneWing->SetWingsScaleForUpDownMovement(WingsMaxUpDownMovement);
+		AirPlaneWing->SetIsUsingWingsForUpMovement(IsWingsUpToSet);
+	}
+}
+
+void AAirPlane::UseWingsForDownMovement(bool IsWingsDownToSet) {
+	if(AirPlaneWing) {
+		AirPlaneWing->SetWingsScaleForUpDownMovement(WingsMaxUpDownMovement);
+		AirPlaneWing->SetIsUsingWingsForDownMovement(IsWingsDownToSet);
+	}
+}
+
 void AAirPlane::SetEngineLevelMax() {
 	if (AirPlaneEngine == NULL) { return; }
 	AirPlaneEngine->SetEngineLevel(EngineLevelMax);

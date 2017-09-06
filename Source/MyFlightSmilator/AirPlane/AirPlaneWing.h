@@ -20,8 +20,8 @@ protected:
 	virtual void BeginPlay() override;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Plane Setup")
-	float PlaneWingTurningSpeed = 0.1f;
-	float PlaneUpDownSpeed = 0.1f;
+	float PlaneRotatingSpeed = 0.2f;
+	float PlaneUpDownSpeed = 0.4f;
 
 public:	
 	// Called every frame
@@ -33,7 +33,8 @@ public:
 	void SetIsUsingWingsForRotating(bool boolToSet);
 
 	void SetWingsScaleForUpDownMovement(float ScaleToSet);
-	void SetIsUsingWingsForUpDownMovement(bool boolToSet);
+	void SetIsUsingWingsForDownMovement(bool boolToSet);
+	void SetIsUsingWingsForUpMovement(bool boolToSet);
 
 
 private:
@@ -41,10 +42,13 @@ private:
 	bool bIsUsingWingsToRotate = false;
 	float WingsScaleForRotate = 0;
 
-	bool bIsUsingWingsForUpDownMovement = false;
 	float WingsScaleForUpDownMovement = 0;
+	bool bIsUsingWingsForUpMovement = false;
+	bool bIsUsingWingsForDownMovement = false;
 
 
 	void UseWingsToRotate(float Scale);
+	void UseWingsToUp(float Scale);
+	void UseWingsToDown(float Scale);
 	
 };

@@ -35,15 +35,37 @@ void UAirPlaneWing::TickComponent(float DeltaTime, ELevelTick TickType, FActorCo
 	if (bIsUsingWingsToRotate) {
 		UseWingsToRotate(WingsScaleForRotate);
 	}
+	if(bIsUsingWingsForDownMovement) {
+		UseWingsToDown(WingsScaleForUpDownMovement);
+	}else if(bIsUsingWingsForUpMovement) {
+		UseWingsToUp(WingsScaleForUpDownMovement);
+	}
 }
 
 void UAirPlaneWing::UseWingsToRotate(float Scale){
 
-	float WingsRotation = Scale * PlaneWingTurningSpeed;
+	float WingsRotation = Scale * PlaneRotatingSpeed;
 	FRotator NewRotation = GetOwner()->GetActorRotation();
 	NewRotation.Roll += WingsRotation;
 	GetOwner()->SetActorRotation(NewRotation, ETeleportType::None);
 }
+
+void UAirPlaneWing::UseWingsToUp(float Scale) {
+
+	float WingsRotation = Scale * PlaneUpDownSpeed;
+	FRotator NewRotation = GetOwner()->GetActorRotation();
+	NewRotation.Pitch -= WingsRotation;
+	GetOwner()->SetActorRotation(NewRotation, ETeleportType::None);
+}
+
+void UAirPlaneWing::UseWingsToDown(float Scale) {
+
+	float WingsRotation = Scale * PlaneUpDownSpeed;
+	FRotator NewRotation = GetOwner()->GetActorRotation();
+	NewRotation.Pitch += WingsRotation;
+	GetOwner()->SetActorRotation(NewRotation, ETeleportType::None);
+}
+
 
 void UAirPlaneWing::SetWingsScaleForRotating(float ScaleToSet) {
 
@@ -55,9 +77,13 @@ void UAirPlaneWing::SetIsUsingWingsForRotating(bool boolToSet) {
 }
 
 void UAirPlaneWing::SetWingsScaleForUpDownMovement(float ScaleToSet) {
-	
+	WingsScaleForUpDownMovement = ScaleToSet;
 }
 
-void UAirPlaneWing::SetIsUsingWingsForUpDownMovement(bool boolToSet) {
-	
+void UAirPlaneWing::SetIsUsingWingsForDownMovement(bool boolToSet) {
+	bIsUsingWingsForDownMovement = boolToSet;
+}
+
+void UAirPlaneWing::SetIsUsingWingsForUpMovement(bool boolToSet) {
+	bIsUsingWingsForUpMovement = boolToSet;
 }
