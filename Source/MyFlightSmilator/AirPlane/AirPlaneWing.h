@@ -21,6 +21,7 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Plane Setup")
 	float PlaneWingTurningSpeed = 0.1f;
+	float PlaneUpDownSpeed = 0.1f;
 
 public:	
 	// Called every frame
@@ -31,11 +32,18 @@ public:
 	void SetWingsScaleForRotating(float ScaleToSet);
 	void SetIsUsingWingsForRotating(bool boolToSet);
 
+	void SetWingsScaleForUpDownMovement(float ScaleToSet);
+	void SetIsUsingWingsForUpDownMovement(bool boolToSet);
+
 
 private:
 
 	bool bIsUsingWingsToRotate = false;
 	float WingsScaleForRotate = 0;
+
+	bool bIsUsingWingsForUpDownMovement = false;
+	float WingsScaleForUpDownMovement = 0;
+
 
 	void UseWingsToRotate(float Scale);
 	

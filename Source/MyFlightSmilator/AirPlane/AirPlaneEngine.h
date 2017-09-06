@@ -42,11 +42,13 @@ public:
 	void PushPlane();
 
 	float GetPlaneSpeed();
+	
+	void SetIsBreaking(bool BreakingToSet);
 private:
 
 	float Speed = 0;
 	float MaxSpeed = 0;
 
-
+	bool bIsBreaking = false;
 
 };

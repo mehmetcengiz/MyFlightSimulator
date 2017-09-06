@@ -51,6 +51,12 @@ void AAirPlane::UseWingsToRotate(bool bIsUsingWings, float Scale){
 	}
 }
 
+void AAirPlane::SetIsBreaking(bool BreakingToSet) {
+	if(AirPlaneEngine) {
+		AirPlaneEngine->SetIsBreaking(BreakingToSet);
+	}
+}
+
 void AAirPlane::SetEngineLevelMax() {
 	if (AirPlaneEngine == NULL) { return; }
 	AirPlaneEngine->SetEngineLevel(EngineLevelMax);

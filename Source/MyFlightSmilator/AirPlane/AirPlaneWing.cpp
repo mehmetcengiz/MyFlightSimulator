@@ -53,3 +53,11 @@ void UAirPlaneWing::SetWingsScaleForRotating(float ScaleToSet) {
 void UAirPlaneWing::SetIsUsingWingsForRotating(bool boolToSet) {
 	bIsUsingWingsToRotate = boolToSet;
 }
+
+void UAirPlaneWing::SetWingsScaleForUpDownMovement(float ScaleToSet) {
+	
+}
+
+void UAirPlaneWing::SetIsUsingWingsForUpDownMovement(bool boolToSet) {
+	
+}
