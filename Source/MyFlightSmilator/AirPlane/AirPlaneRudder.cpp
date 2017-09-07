@@ -46,10 +46,10 @@ void UAirPlaneRudder::SetIsUsingRudder(bool boolToSet){
 
 void UAirPlaneRudder::UseRudder(float Scale){
 
-	float RudderRotation = Scale * PlaneRudderTurningSpeed;	
-	FRotator NewRotation = GetOwner()->GetActorRotation();
-	NewRotation.Yaw += RudderRotation;
-	GetOwner()->SetActorRotation(NewRotation, ETeleportType::None);
+
+	float RudderRotation = Scale * PlaneRudderTurningSpeed;
+	FRotator RudderTurningSpeed(0, RudderRotation, 0);
+	GetOwner()->AddActorLocalRotation(RudderTurningSpeed, true, nullptr, ETeleportType::None);
 
 }
 

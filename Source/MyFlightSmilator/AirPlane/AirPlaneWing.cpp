@@ -53,17 +53,15 @@ void UAirPlaneWing::UseWingsToRotate(float Scale){
 void UAirPlaneWing::UseWingsToUp(float Scale) {
 
 	float WingsRotation = Scale * PlaneUpDownSpeed;
-	FRotator NewRotation = GetOwner()->GetActorRotation();
-	NewRotation.Pitch -= WingsRotation;
-	GetOwner()->SetActorRotation(NewRotation, ETeleportType::None);
+	FRotator RudderTurningSpeed(WingsRotation, 0, 0);
+	GetOwner()->AddActorLocalRotation(-RudderTurningSpeed, true, nullptr, ETeleportType::None);
 }
 
 void UAirPlaneWing::UseWingsToDown(float Scale) {
 
 	float WingsRotation = Scale * PlaneUpDownSpeed;
-	FRotator NewRotation = GetOwner()->GetActorRotation();
-	NewRotation.Pitch += WingsRotation;
-	GetOwner()->SetActorRotation(NewRotation, ETeleportType::None);
+	FRotator RudderTurningSpeed(WingsRotation, 0, 0);
+	GetOwner()->AddActorLocalRotation(RudderTurningSpeed, true, nullptr, ETeleportType::None);
 }
 
 
