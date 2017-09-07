@@ -57,6 +57,7 @@ protected:
 	UFUNCTION(BlueprintCallable, Category = "Controls")
 	void UseWingsForDownMovement(bool IsWingsDownToSet);
 
+
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

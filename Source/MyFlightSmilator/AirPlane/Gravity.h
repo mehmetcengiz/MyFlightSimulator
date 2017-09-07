@@ -23,7 +23,7 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "AirPlane")
 	float MinSpeedToFly = 120.0f;
 	UPROPERTY(EditDefaultsOnly, Category = "AirPlane")
-	float MaxGravity = 15.f;
+	float MaxGravity = 20.0f;
 
 public:	
 	// Called every frame
