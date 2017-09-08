@@ -57,3 +57,7 @@ void UAirplaneGear::SetGear(UStaticMeshComponent* WheelFrontToSet, UStaticMeshCo
 	Hydraolic = HydraolicToSet;
 
 }
+
+void UAirplaneGear::GearUp() {
+	
+}

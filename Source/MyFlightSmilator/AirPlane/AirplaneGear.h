@@ -42,5 +42,6 @@ private:
 	UStaticMeshComponent* GearBoxBack;
 	UStaticMeshComponent* Hydraolic;
 
+	void GearUp();
 };
 
