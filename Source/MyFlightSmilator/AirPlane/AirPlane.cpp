@@ -58,6 +58,8 @@ void AAirPlane::SetIsBreaking(bool BreakingToSet) {
 }
 
 void AAirPlane::UseWingsForUpMovement(bool IsWingsUpToSet) {
+	if (AirPlaneEngine->GetPlaneSpeed() < MinPlaneSpeedToFly) { return; }
+
 	if (AirPlaneWing) {
 		AirPlaneWing->SetWingsScaleForUpDownMovement(WingsMaxUpDownMovement);
 		AirPlaneWing->SetIsUsingWingsForUpMovement(IsWingsUpToSet);
@@ -65,6 +67,8 @@ void AAirPlane::UseWingsForUpMovement(bool IsWingsUpToSet) {
 }
 
 void AAirPlane::UseWingsForDownMovement(bool IsWingsDownToSet) {
+
+	if (AirPlaneEngine->GetPlaneSpeed() < MinPlaneSpeedToFly) { return; }
 	if(AirPlaneWing) {
 		AirPlaneWing->SetWingsScaleForUpDownMovement(WingsMaxUpDownMovement);
 		AirPlaneWing->SetIsUsingWingsForDownMovement(IsWingsDownToSet);

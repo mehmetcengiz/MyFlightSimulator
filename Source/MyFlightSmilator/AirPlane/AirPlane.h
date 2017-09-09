@@ -26,7 +26,7 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "PlaneSetup")
 	float MaxPlaneSpeed;
 	UPROPERTY(EditDefaultsOnly, Category = "PlaneSetup")
-	float MinPlaneSpeed;
+	float MinPlaneSpeedToFly = 120;
 	
 	UPROPERTY(EditDefaultsOnly, Category = "PlaneSetup")
 	int EngineLevelMax = 3;
