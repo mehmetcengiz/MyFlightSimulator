@@ -20,10 +20,6 @@ void UAirPlaneWing::BeginPlay()
 {
 	Super::BeginPlay();
 
-	if(bIsUsingWingsToRotate){
-		UseWingsToRotate(WingsScaleForRotate);
-	}
-	
 }
 
 
@@ -33,13 +29,27 @@ void UAirPlaneWing::TickComponent(float DeltaTime, ELevelTick TickType, FActorCo
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	if (bIsUsingWingsToRotate) {
+		ChangeRotationSpeed();
 		UseWingsToRotate(WingsScaleForRotate);
+	}else{
+		FixRotationSpeed();
 	}
+
 	if(bIsUsingWingsForDownMovement) {
 		UseWingsToDown(WingsScaleForUpDownMovement);
 	}else if(bIsUsingWingsForUpMovement) {
 		UseWingsToUp(WingsScaleForUpDownMovement);
 	}
+}
+
+void UAirPlaneWing::ChangeRotationSpeed(){
+	PlaneRotatingSpeed += 0.025f;
+}
+
+void UAirPlaneWing::FixRotationSpeed(){
+	
+	if(PlaneRotatingSpeed > DefaultPlaneRotatingSpeed)
+		PlaneRotatingSpeed -= 0.02f;
 }
 
 void UAirPlaneWing::UseWingsToRotate(float Scale){
@@ -63,6 +73,7 @@ void UAirPlaneWing::UseWingsToDown(float Scale) {
 	FRotator RudderTurningSpeed(WingsRotation, 0, 0);
 	GetOwner()->AddActorLocalRotation(RudderTurningSpeed, true, nullptr, ETeleportType::None);
 }
+
 
 
 void UAirPlaneWing::SetWingsScaleForRotating(float ScaleToSet) {

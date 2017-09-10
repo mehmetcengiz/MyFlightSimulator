@@ -21,6 +21,7 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Plane Setup")
 	float PlaneRotatingSpeed = 0.2f;
+	float DefaultPlaneRotatingSpeed = 0.2f;
 	float PlaneUpDownSpeed = 0.4f;
 
 public:	
@@ -50,5 +51,6 @@ private:
 	void UseWingsToRotate(float Scale);
 	void UseWingsToUp(float Scale);
 	void UseWingsToDown(float Scale);
-	
+	void ChangeRotationSpeed();
+	void FixRotationSpeed();
 };
