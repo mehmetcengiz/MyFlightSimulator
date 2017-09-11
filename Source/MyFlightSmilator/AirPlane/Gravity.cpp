@@ -37,6 +37,7 @@ void UGravity::ApplyGravity(){
 	float GravityZ = Speed < MinSpeedToFly ? MinSpeedToFly - Speed : 0;
 	GravityZ = GravityZ > MaxGravity ? MaxGravity : GravityZ;
 
+
 	UE_LOG(LogTemp, Warning, TEXT("Gravity: %f"), GravityZ);
 
 	FVector Gravity(0, 0, -GravityZ);

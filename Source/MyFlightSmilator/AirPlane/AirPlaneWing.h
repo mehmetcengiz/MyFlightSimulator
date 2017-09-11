@@ -5,6 +5,7 @@
 #include "Components/ActorComponent.h"
 #include "AirPlaneWing.generated.h"
 
+class UAirPlaneEngine;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class MYFLIGHTSMILATOR_API UAirPlaneWing : public UActorComponent
@@ -20,8 +21,9 @@ protected:
 	virtual void BeginPlay() override;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Plane Setup")
-	float PlaneRotatingSpeed = 0.2f;
+	float PlaneRotationSpeed = 0.2f;
 	float DefaultPlaneRotatingSpeed = 0.2f;
+	float RotationAcceleration = 0.1f;
 	float PlaneUpDownSpeed = 0.4f;
 
 public:	
@@ -40,6 +42,8 @@ public:
 
 private:
 
+	UAirPlaneEngine* AirPlaneEngine = nullptr;
+
 	bool bIsUsingWingsToRotate = false;
 	float WingsScaleForRotate = 0;
 
@@ -53,4 +57,5 @@ private:
 	void UseWingsToDown(float Scale);
 	void ChangeRotationSpeed();
 	void FixRotationSpeed();
+	void ApplyWingsLiftingForce();
 };

@@ -2,6 +2,7 @@
 
 #include "MyFlightSmilator.h"
 #include "AirPlaneWing.h"
+#include "AirPlaneEngine.h"
 
 
 // Sets default values for this component's properties
@@ -20,6 +21,7 @@ void UAirPlaneWing::BeginPlay()
 {
 	Super::BeginPlay();
 
+	AirPlaneEngine = GetOwner()->FindComponentByClass<UAirPlaneEngine>();
 }
 
 
@@ -28,11 +30,14 @@ void UAirPlaneWing::TickComponent(float DeltaTime, ELevelTick TickType, FActorCo
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
+	ApplyWingsLiftingForce();
+
 	if (bIsUsingWingsToRotate) {
 		ChangeRotationSpeed();
 		UseWingsToRotate(WingsScaleForRotate);
-	}else{
+	}else if(PlaneRotationSpeed > DefaultPlaneRotatingSpeed){
 		FixRotationSpeed();
+		UseWingsToRotate(WingsScaleForRotate);
 	}
 
 	if(bIsUsingWingsForDownMovement) {
@@ -43,18 +48,26 @@ void UAirPlaneWing::TickComponent(float DeltaTime, ELevelTick TickType, FActorCo
 }
 
 void UAirPlaneWing::ChangeRotationSpeed(){
-	PlaneRotatingSpeed += 0.025f;
+	PlaneRotationSpeed += 0.025f;
 }
 
 void UAirPlaneWing::FixRotationSpeed(){
+		PlaneRotationSpeed -= 0.02f;
+}
+
+void UAirPlaneWing::ApplyWingsLiftingForce() {
+	if (AirPlaneEngine == NULL) { return;}
 	
-	if(PlaneRotatingSpeed > DefaultPlaneRotatingSpeed)
-		PlaneRotatingSpeed -= 0.02f;
+	float Speed = AirPlaneEngine->GetPlaneSpeed();
+	float LiftingForce = Speed > 120 ? Speed - 120 : 0;
+	FVector DeltaForceOffset(0, 0, LiftingForce/10);
+
+	GetOwner()->AddActorLocalOffset(DeltaForceOffset, true, nullptr, ETeleportType::None);
 }
 
 void UAirPlaneWing::UseWingsToRotate(float Scale){
 
-	float WingsRotation = Scale * PlaneRotatingSpeed;
+	float WingsRotation = Scale * PlaneRotationSpeed;
 	FRotator NewRotation = GetOwner()->GetActorRotation();
 	NewRotation.Roll += WingsRotation;
 	GetOwner()->SetActorRotation(NewRotation, ETeleportType::None);
@@ -73,6 +86,7 @@ void UAirPlaneWing::UseWingsToDown(float Scale) {
 	FRotator RudderTurningSpeed(WingsRotation, 0, 0);
 	GetOwner()->AddActorLocalRotation(RudderTurningSpeed, true, nullptr, ETeleportType::None);
 }
+
 
 
 
