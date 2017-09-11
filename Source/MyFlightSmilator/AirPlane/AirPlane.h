@@ -71,6 +71,6 @@ private:
 	UAirPlaneWing* AirPlaneWing = nullptr;
 
 	bool bIsMoving = false;
-	bool bIsOnAir = false;
+	
 
 };
