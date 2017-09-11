@@ -50,6 +50,7 @@ private:
 	float WingsScaleForUpDownMovement = 0;
 	bool bIsUsingWingsForUpMovement = false;
 	bool bIsUsingWingsForDownMovement = false;
+	float LiftingScale = 0.002;
 
 
 	void UseWingsToRotate(float Scale);

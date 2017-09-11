@@ -21,7 +21,7 @@ protected:
 	virtual void BeginPlay() override;
 
 	UPROPERTY(EditDefaultsOnly, Category = "AirPlane")
-	float MinSpeedToFly = 120.0f;
+	float MinSpeedToFly = 135.0f;
 	UPROPERTY(EditDefaultsOnly, Category = "AirPlane")
 	float MaxGravity = 20.0f;
 

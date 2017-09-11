@@ -56,13 +56,12 @@ void UAirPlaneWing::FixRotationSpeed(){
 }
 
 void UAirPlaneWing::ApplyWingsLiftingForce() {
-	if (AirPlaneEngine == NULL) { return;}
-	
-	float Speed = AirPlaneEngine->GetPlaneSpeed();
-	float LiftingForce = Speed > 120 ? Speed - 120 : 0;
-	FVector DeltaForceOffset(0, 0, LiftingForce/10);
 
-	GetOwner()->AddActorLocalOffset(DeltaForceOffset, true, nullptr, ETeleportType::None);
+	float Rotation = GetOwner()->GetActorRotation().Roll;
+	float LiftingForce = Rotation * LiftingScale;
+
+	FRotator RudderTurningSpeed(0, LiftingForce, 0);
+	GetOwner()->AddActorWorldRotation(RudderTurningSpeed, true, nullptr, ETeleportType::None);
 }
 
 void UAirPlaneWing::UseWingsToRotate(float Scale){

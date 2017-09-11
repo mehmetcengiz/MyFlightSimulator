@@ -28,7 +28,7 @@ protected:
 	float TrackMaxDrivingForce = 100000;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Engine")
-	float EnginePower = 60;
+	float EnginePower = 70;
 
 
 public:	
